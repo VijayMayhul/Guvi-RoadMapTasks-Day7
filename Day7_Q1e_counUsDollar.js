@@ -17,9 +17,21 @@ request.send();
 
 //while loading event getting our needed output
 request.onload = () =>{
+
     //getting response array
     var res = JSON.parse(request.response);
     // console.log(res);
+
+    //Separating all the US dollar countries using filter
+    var UsDollarCountries = res.filter((ele)=> ele.currencies && ele.currencies.USD);
+    // console.log(UsDollarCountries);
+
+    //printing the USD using countries
+    console.log(`The countries that uses US dollar as their currency are :`);
+    UsDollarCountries.forEach((item, index)=>{
+        console.log(`${index+1}. ${item.name.common}`);
+    });
+    
     /*
     let cur = res[15].currencies;
     // console.log(cur);
@@ -27,7 +39,6 @@ request.onload = () =>{
     let key = Object.keys(cur);
     console.log(key, typeof(key));
     console.log(cur[key].name);
-    */
  
    //getting currency array
     var arCounCurrencies = res.map((ele) => ele.currencies);
@@ -39,14 +50,32 @@ request.onload = () =>{
     // console.log(arCounCurrencies);
 
     //getting the arrays which as USD as their currency
+    var dollar = arCounCurrencies.filter((ele)=> ele.USD);
+    // console.log(dollar);
+
+    // console.log(JSON.stringify(res[19].currencies.USD.name) == JSON.stringify(dollar[0].USD.name));
+    //comparing the whole array currency with USD using array to find the usd using array of countries
+    
+    // var UsDollarCountries2 = res.filter((ele)=> JSON.stringify(ele.currencies) ==  JSON.stringify(dollar[6]) || JSON.stringify(ele.currencies) ==  JSON.stringify(dollar[8]) || JSON.stringify(ele.currencies) ==  JSON.stringify(dollar[10]) );
+
+    // console.log(UsDollarCountries1);
+    // console.log(UsDollarCountries1, UsDollarCountries2);
+    // var UsDollarCountries =[...UsDollarCountries1, ...UsDollarCountries2];
+     
+    //printing the USD using countries
+    console.log(`The countries that uses US dollar as their currency are :`);
+    UsDollarCountries.forEach((item, index)=>{
+        console.log(`${index+1}. ${item.name.common}`);
+    });
+   
+    //getting the arrays which as USD as their currency
     var arUScountries = arCounCurrencies.filter((ele)=> Object.keys(ele) == "USD");
-    /*
+
     console.log(arUScountries);
     console.log(arUScountries[0].USD.name == res[19].currencies.USD.name);
     console.log(JSON.stringify(res[19].currencies), JSON.stringify(arUScountries[0]));
     console.log(JSON.stringify(res[19].currencies) == JSON.stringify(arUScountries[0]));
-    */
-
+    
     //comparing the whole array currency with USD using array to find the usd using array of countries
     var UsDollarCountries = res.filter((ele)=> JSON.stringify(ele.currencies) == JSON.stringify(arUScountries[0]));
     
@@ -55,35 +84,6 @@ request.onload = () =>{
     UsDollarCountries.forEach((item, index)=>{
         console.log(`${index+1}. ${item.name.common}`);
     });
-    
-    
-    
-
-    
-    
-
-
-
-
-    /*
-    //filtering the countries where its population less than 2 lakhs
-    let ar2LacCountries = res.filter(
-            (ele)=> ele.population < 200000
-        ); 
-        // console.log(ar2LacCountries);
-    
-    //getting the name only of the countries
-    let Countries2Lac = ar2LacCountries.map(
-        (ele) => ele.name.common
-    );
-    // console.log(Countries2Lac);
-
-    
-    //printing the countries one by one
-    console.log(`The countries which as population less than 2 lakhs :`);
-    for(let i=0;i<Countries2Lac.length;i++){
-        console.log(`${i+1}. ${Countries2Lac[i]}`);
-    }
     */
     
 }
