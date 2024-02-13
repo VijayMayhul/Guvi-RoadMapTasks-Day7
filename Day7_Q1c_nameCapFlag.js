@@ -29,7 +29,7 @@ request.onload = () =>{
         // console.log(index, item);
         let name = item.name.common;
         let capital = item.capital;
-        let flag = item.flag;
+        let flag = item.flags.svg;
         
         console.log(`${index+1}. Country Name : ${name}, Capital : ${capital}, Flag : ${flag}`);
     });

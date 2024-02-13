@@ -23,6 +23,7 @@ request.onload = () =>{
     // console.log(res);
 
     //Separating all the US dollar countries using filter
+    // console.log(res[65].currencies && res[15].currencies.USD );
     var UsDollarCountries = res.filter((ele)=> ele.currencies && ele.currencies.USD);
     // console.log(UsDollarCountries);
 
@@ -31,6 +32,8 @@ request.onload = () =>{
     UsDollarCountries.forEach((item, index)=>{
         console.log(`${index+1}. ${item.name.common}`);
     });
+
+    
     
     /*
     let cur = res[15].currencies;
